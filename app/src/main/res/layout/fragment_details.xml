@@ -1,0 +1,141 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_movie_title"
+            android:background="#009688"
+            android:textColor="#ffffff"
+            android:textSize="40dp"
+            android:padding="16dp"
+            android:textAppearance="@android:style/TextAppearance.DialogWindowTitle"
+            android:text="Hello World"
+            />
+
+        <android.support.design.widget.FloatingActionButton android:id="@+id/button_favorite"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@android:drawable/btn_star_big_off"
+            android:layout_gravity="right" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp"
+            >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:src="@drawable/image1"
+                    android:layout_weight="1"
+                    android:id="@+id/imageview_movie_poster"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:paddingLeft="16dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="30dp"
+                        android:id="@+id/textview_movie_date"
+                        android:text="2015"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textview_movie_rate"
+                        android:text="8.0/10"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textview_movie_overview"
+                android:text="Armed with the astonishing ability to shrink in scale but increase in strength, con-man Scott Lang must embrace his inner-hero and help his mentor, Dr. Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats. Against seemingly insurmountable obstacles, Pym and Lang must plan and pull off a heist that will save the world."/>
+
+            <!-- Trailers -->
+            <View style="@style/Divider" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Trailers"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_trailers"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <!-- Reviews-->
+            <View style="@style/Divider" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Reviews"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_reviews"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent" android:paddingLeft="0dp"-->
+    <!--android:paddingRight="0dp"-->
+    <!--android:paddingTop="0dp"-->
+    <!--android:paddingBottom="0dp" tools:showIn="@layout/activity_details"-->
+    <!--tools:context="com.coding4all.android.movieapp.DetailsActivityFragment">-->
+
+
+
+
+<!--</RelativeLayout>-->
