@@ -1,8 +1,8 @@
 package com.coding4all.android.movieapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,6 +32,11 @@ public class MainActivityFragment extends Fragment {
     int PAGE_NUMBER;
     boolean UPDATING;
     public MainActivityFragment() {
+    }
+
+
+    public interface Callbacks {
+        public void onItemSelected(Movie item);
     }
 
     @Override
@@ -74,12 +79,32 @@ public class MainActivityFragment extends Fragment {
         moviesGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Movie movie = moviesList.get(position);
+                Fragment fragment = new DetailsActivityFragment();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("movie", movie);
+                fragment.setArguments(bundle);
 
-                Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                intent.putExtra("movie", movie);
+                if(isTablet(getActivity()))
+                {
+                    if(getActivity().findViewById(R.id.fragment_details) == null)
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                            .add(R.id.fragment_details,fragment)
+                            .commit();
+                    else
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_details,fragment)
+                                .commit();
+                } else {
 
-                startActivity(intent);
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_main,fragment)
+                            .commit();
+
+
+                }
+
 
             }
         });
@@ -105,7 +130,6 @@ public class MainActivityFragment extends Fragment {
 
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-
 
         if (id == R.id.action_most_popular) {
             editor.putString(getString(R.string.sort_by), getString(R.string.most_popular_value));
@@ -166,7 +190,7 @@ public class MainActivityFragment extends Fragment {
 
         @Override
         protected void onPostExecute(ArrayList<Movie> result) {
-            if (result != null) {
+            if (result != null && getActivity() != null) {
                 SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
                 String sortby = sharedPref.getString(getActivity().getString(R.string.sort_by), getActivity().getString(R.string.most_popular_value));
 
@@ -179,11 +203,17 @@ public class MainActivityFragment extends Fragment {
                 }
 
                 myMoviesAdapter.notifyDataSetChanged();
-                UPDATING = false;
+
                 PAGE_NUMBER++;
             }
+            UPDATING = false;
         }
 
 
+    }
+    public static boolean isTablet(Context context) {
+        return (context.getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK)
+                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 }

@@ -1,7 +1,6 @@
 package com.coding4all.android.movieapp;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -41,6 +40,14 @@ public class DetailsActivityFragment extends Fragment {
 
     }
 
+    public static DetailsActivityFragment newInstance(Bundle args) {
+        DetailsActivityFragment fragment = new DetailsActivityFragment();
+        if (args != null) {
+            fragment.setArguments(args);
+        }
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,9 +66,10 @@ public class DetailsActivityFragment extends Fragment {
 
         String BASE_URL = "http://image.tmdb.org/t/p/w342";
 
-        Intent intent = getActivity().getIntent();
-        if (intent != null){
-            final Movie movie = (Movie) intent.getParcelableExtra("movie");
+        Bundle mBundle = this.getArguments();
+
+        if (mBundle != null && mBundle.containsKey("movie") ){
+            final Movie movie = (Movie) mBundle.getParcelable("movie");
 
 
             Cursor cursor = getContext().getContentResolver().query(MoviesProvider.Movies.withId(movie.id), null, null, null, null);

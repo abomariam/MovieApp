@@ -7,28 +7,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
-import com.squareup.picasso.OkHttpDownloader;
-import com.squareup.picasso.Picasso;
+import com.coding4all.android.movieapp.Models.Movie;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainActivityFragment.Callbacks {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+            if (savedInstanceState == null){
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.fragment_main,new MainActivityFragment())
+                        .commit();
+            }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+    }
 
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+
+    @Override
+    public void onItemSelected(Movie item) {
     }
 
     @Override
